@@ -3,8 +3,9 @@
     justify-content: space-evenly;
     left: 15%;
     position: absolute;
+    /* color: white; */
     display: flex;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 0px 0px 50px 50px;
     width: 70%;
     align-items: center;
