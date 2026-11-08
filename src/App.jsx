@@ -5,10 +5,10 @@ import Checkout from "./pages/Checkout.jsx";
 
 function App() {
   return (
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="Checkout" element={<Checkout/>}></Route>
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="Checkout" element={<Checkout />}></Route>
+    </Routes>
   );
 }
 
