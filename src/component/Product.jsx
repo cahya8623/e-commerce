@@ -5,7 +5,18 @@ export default function Product() {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
-  console.log(data);
+  const [category, setCategory] = useState("All");
+
+  console.log("start = " + startIndex)
+  console.log("end = "+ endIndex)
+  console.log("page = " + pageNumber)
+
+  function categoryBtn(e) {
+    setCategory(e.target.textContent);
+    setPageNumber(1);
+    setStartIndex(0);
+    setEndIndex(10)
+  }
 
   function Prev() {
     if (pageNumber <= 1) return;
@@ -23,13 +34,19 @@ export default function Product() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await fetch("https://dummyjson.com/products");
+        const url =
+          category === "All"
+            ? "https://dummyjson.com/products"
+            : `https://dummyjson.com/products/category/${category}`;
+
+        let response = await fetch(url);
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
 
+        const data = await response.json();
+        console.log(data);
         setData(data.products);
       } catch (error) {
         console.error(error);
@@ -37,9 +54,26 @@ export default function Product() {
     };
 
     fetchData();
-  }, []);
+  }, [category]);
   return (
     <div className="card-container">
+      <div className="category-list">
+        <button className="catergory-btn" onClick={categoryBtn}>
+          All
+        </button>
+        <button className="catergory-btn" onClick={categoryBtn}>
+          Beauty
+        </button>
+        <button className="catergory-btn" onClick={categoryBtn}>
+          fragrances
+        </button>
+        <button className="catergory-btn" onClick={categoryBtn}>
+          furniture
+        </button>
+        <button className="catergory-btn" onClick={categoryBtn}>
+          groceries
+        </button>
+      </div>
       <div className="cards">
         {data.slice(startIndex, endIndex).map((data) => (
           <div className="card">

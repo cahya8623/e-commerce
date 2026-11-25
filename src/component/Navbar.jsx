@@ -17,7 +17,7 @@ export function Navbar() {
 
         <div className="search-bar">
           <input placeholder="🔎" type="text" size={30} />
-          <button>Search</button>
+          <button className="Nav-Button">Search</button>
         </div>
       </div>
 
